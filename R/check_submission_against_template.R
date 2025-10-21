@@ -60,6 +60,7 @@ check_submission_against_template <- function(template_path,
       illegal_install = chunk_name %in% illegal_installs,
       error           = NULL,
       missing_vars    = NULL,
+      missing_plot    = NULL,
       type_mismatch   = NULL)
 
     if (!res$present) {
@@ -75,6 +76,9 @@ check_submission_against_template <- function(template_path,
       next
     }
 
+    # Detect if code produces a plot
+    plot_generated <- FALSE
+
     exec <- try(
       suppressMessages(
         suppressWarnings(
@@ -82,12 +86,19 @@ check_submission_against_template <- function(template_path,
             # open a null graphics device to swallow plots
             pdf(NULL)
             on.exit(dev.off(), add = TRUE)
+
+            # eval code
             eval(expr, envir = env)
+
+            # record anything plotted
+            rp <- recordPlot()
+            plot_generated <<- length(rp[[1]]) > 0  # TRUE if anything was drawn
           }, file = NULL)
         )
       ),
       silent = TRUE
     )
+
     if (inherits(exec, "try-error")) {
       res$error <- paste("Execution error:", attr(exec, "condition")$message)
       results[[chunk_name]] <- res
@@ -111,6 +122,13 @@ check_submission_against_template <- function(template_path,
       }
     }
 
+    expected_plot <- !is.null(template_info[[chunk_name]]$plot)
+
+    if (expected_plot && !plot_generated) {
+      res$missing_plot <- TRUE
+    }
+
+
     results[[chunk_name]] <- res
   }
 
@@ -131,7 +149,9 @@ check_submission_against_template <- function(template_path,
                                       paste(r$type_mismatch[, 1], ": (",
                                             r$type_mismatch[, 2], "-->",
                                             r$type_mismatch[, 3], ")",
-                                            collapse = "; ")))}))
+                                            collapse = "; ")),
+               missing_plot  = ifelse(is.null(r$missing_plot),
+                                      FALSE, TRUE))}))
 
   class(summary_df) <- c("SCEMChecker", class(summary_df))
   return(summary_df)

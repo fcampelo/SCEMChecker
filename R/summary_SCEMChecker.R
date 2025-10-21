@@ -72,5 +72,15 @@ summary.SCEMChecker <- function(object, ...)
     message("------")
   }
 
+  if(any(object$missing_plot)){
+    idx <- which(object$missing_plot)
+    tmp <- object[idx, ]
+    message("\nChunks with missing plots:")
+    for (i in seq_along(idx)){
+      message(tmp$chunk[i])
+    }
+    message("------")
+  }
+
   invisible(NULL)
 }
