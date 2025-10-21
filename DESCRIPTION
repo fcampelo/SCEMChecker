@@ -1,0 +1,13 @@
+Package: SCEMChecker
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person("Felipe", "Campelo", , "fcampelo@tuta.com", role = c("aut", "cre"))
+Description: Checking routines for Rmd student submissions in the context of the Statistical Computing and Empirical Methods unit, University of Bristol.
+License: `use_mit_license()`
+Encoding: UTF-8
+Depends: R (>= 4.4.0)
+Imports:  stringr, 
+          dplyr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
