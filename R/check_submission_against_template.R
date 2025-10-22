@@ -9,13 +9,17 @@
 #'    \item no rogue calls to `install.packages` are done.
 #' }
 #'
-#' @param template_path path to the template solution .Rmd file
+#' @param template_path path to the template .Rmd file
 #' @param submission_path path to the submission .Rmd file
 #' @param reqvars_str Indicator string for definition of required variables
 #' @param reqplot_str Indicator string for definition of required variables
 #'
 #' @returns a data frame with the summary of the checks done, and specific indications
 #' of any problem found.
+#'
+#' @importFrom dplyr %>% bind_rows
+#' @importFrom grDevices pdf dev.off recordPlot
+#' @importFrom utils capture.output
 #'
 #' @export
 

@@ -1,7 +1,25 @@
-# compare_environments: uses template_info to focus on required variables/plots
+#' Compare environments
+#'
+#' Compares results of running model Rmd vs. submitted Rmd, using template_info
+#' to focus on required variables/plots.
+#' Returns informative messages if there are differences
+#'
+#' @param sub_run submitted value
+#' @param ref_run reference value
+#' @param template_info parsed template_info obtained by running
+#'                      lapply(parse_rmd_chunks(template_path),
+#'                      parse_requirements).
+#'
+#'
+#' @returns a list object with details of the check.
+#'
+
 compare_environments <- function(sub_run, ref_run, template_info) {
+
+  # Initialise results list
   results <- list()
-  # iterate template chunks (so ordering / presence is respected)
+
+  # iterate template chunks
   for (chunk_name in names(template_info)) {
     tpl <- template_info[[chunk_name]]
     res <- list(chunk = chunk_name, present = FALSE,

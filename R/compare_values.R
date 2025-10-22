@@ -1,4 +1,4 @@
-#' compare_values:
+#' Compare values
 #'
 #' Compares values and returns informative messages if there are differences
 #'
