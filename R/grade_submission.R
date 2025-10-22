@@ -6,12 +6,13 @@
 # - out_dir: directory where intermediate results, RDS, Rmd and html will be written
 # - render_report: whether to call rmarkdown::render() on feedback Rmd
 grade_submission <- function(template_path,
-                             submission_path,
-                             reference_path,
-                             out_dir = tempdir(),
-                             reqvars_str = "Required variables",
-                             reqplot_str = "Required plot",
-                             render_report = TRUE) {
+                                  submission_path,
+                                  reference_path,
+                                  out_dir = tempdir(),
+                                  reqvars_str = "Required variables",
+                                  reqplot_str = "Required plots",
+                                  render_report = TRUE) {
+
   dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
   # parse template info
@@ -20,7 +21,8 @@ grade_submission <- function(template_path,
                           reqvars_str = reqvars_str, reqplot_str = reqplot_str)
 
   # run submission
-  sub_run <- run_rmd_chunks(submission_path, remove_illegal_installs = TRUE)
+  submission_chunks <- parse_rmd_chunks(submission_path)
+  sub_run <- run_rmd_chunks(submission_chunks, remove_illegal_installs = TRUE)
 
   # attempt to get MY_STUDENT_ID from submission env
   student_id <- if (exists("MY_STUDENT_ID", envir = sub_run$env, inherits = FALSE)) {
@@ -29,70 +31,15 @@ grade_submission <- function(template_path,
     NA
   }
 
-  # run reference with student id assigned
-  ref_env <- new.env(parent = globalenv())
-  if (!is.na(student_id)) assign("MY_STUDENT_ID", student_id, envir = ref_env)
-
-  # We'll run reference by parsing its chunks and evaluating them in ref_env
-  # but reusing run_rmd_chunks would create a fresh env; instead we run run_rmd_chunks then copy env?
-  # Simpler: run_rmd_chunks and then, if student id was assigned before running, it will be used.
-  # So we must run run_rmd_chunks after setting MY_STUDENT_ID in a new env -- run_rmd_chunks always creates its own env,
-  # so we need a variant; easiest: temporarily create a file copy of reference and evaluate in an env with MY_STUDENT_ID set.
-  # But for simplicity we will mimic run_rmd_chunks but with env we control:
-
   # parse reference chunks
   ref_parsed <- parse_rmd_chunks(reference_path)
-  # remove illegal installs from reference? not needed but safe
-  for (cn in names(ref_parsed)) {
-    ref_parsed[[cn]] <- gsub("install\\.packages\\s*\\([^)]*\\)",
-                             "# install.packages() removed by checker",
-                             ref_parsed[[cn]])
-  }
 
-  # execute ref chunks in ref_env, silently, capturing plots
-  ref_chunks_results <- list()
-  for (chunk_name in names(ref_parsed)) {
-    res <- list(chunk = chunk_name, present = TRUE, illegal_install = FALSE,
-                error = NULL, plot = NULL, plot_generated = FALSE)
-    code <- ref_parsed[[chunk_name]]
-    expr <- try(parse(text = code), silent = TRUE)
-    if (inherits(expr, "try-error")) {
-      res$error <- paste0("Parse error: ", attr(expr, "condition")$message)
-      ref_chunks_results[[chunk_name]] <- res
-      next
-    }
-    exec <- try({
-      suppressMessages(
-        suppressWarnings(
-          capture.output({
-            pdf(NULL)
-            on.exit(dev.off(), add = TRUE)
-            eval(expr, envir = ref_env)
-            rp <- try(recordPlot(), silent = TRUE)
-            if (!inherits(rp, "try-error") && !is.null(rp)) {
-              rp_list <- try(unclass(rp), silent = TRUE)
-              has_content <- FALSE
-              if (!inherits(rp_list, "try-error")) {
-                has_content <- length(rp_list) > 0
-              } else {
-                has_content <- TRUE
-              }
-              if (has_content) {
-                res$plot <- rp
-                res$plot_generated <- TRUE
-              }
-            }
-          }, file = NULL)
-        )
-      )
-    }, silent = TRUE)
-    if (inherits(exec, "try-error")) {
-      res$error <- paste0("Execution error: ", attr(exec, "condition")$message)
-    }
-    ref_chunks_results[[chunk_name]] <- res
-  }
+  # Add student ID from the submission file to the ref chunks
+  toReplace <- grep(pattern = "MY_STUDENT_ID <-", ref_parsed[["ID"]], fixed = TRUE)
+  ref_parsed[["ID"]][toReplace] <- paste0("MY_STUDENT_ID <- ", student_id)
 
-  ref_run <- list(env = ref_env, chunks = ref_chunks_results)
+  # run ref chunks in ref_env
+  ref_run <- run_rmd_chunks(ref_parsed)
 
   # Now compare
   compare_res <- compare_environments(sub_run, ref_run, template_info)

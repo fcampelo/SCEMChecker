@@ -3,6 +3,7 @@
 #' @param path path to Rmd file
 #' @param remove_illegal_installs logical, should calls to install.packages() be
 #' removed outside the "Setup" chunk?
+#' @param env environment in which to evaluate the chunks. If `NULL`,  a new environment is created.
 #'
 #'  @returns a list object with:
 #'  \itemize{
@@ -14,10 +15,7 @@
 #'
 #'  @export
 
-run_rmd_chunks <- function(path, remove_illegal_installs = TRUE) {
-
-  # Parse file in path
-  parsed <- parse_rmd_chunks(path)
+run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
 
   # detect and remove illegal installs (if needed)
   illegal_installs <- character(0)
@@ -37,7 +35,7 @@ run_rmd_chunks <- function(path, remove_illegal_installs = TRUE) {
   }
 
   # Generate new environment for running the chunks
-  env <- new.env(parent = globalenv())
+  if(is.null(env)) env <- new.env(parent = globalenv())
   chunk_results <- list()
 
   for (chunk_name in names(parsed)) {
@@ -83,8 +81,8 @@ run_rmd_chunks <- function(path, remove_illegal_installs = TRUE) {
                 # typical rp unclassed is a list; check length
                 has_content <- length(rp_list) > 0
               } else {
-                # fallback: assume a recorded plot exists
-                has_content <- TRUE
+                # fallback: assume a recorded plot does not exist
+                has_content <- FALSE
               }
 
               if (has_content) {
