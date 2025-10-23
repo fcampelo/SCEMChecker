@@ -1,6 +1,6 @@
 #' Run an Rmd and capture outputs
 #'
-#' @param path path to Rmd file
+#' @param parsed a parsed Rmd file
 #' @param remove_illegal_installs logical, should calls to install.packages() be
 #' removed outside the "Setup" chunk?
 #' @param env environment in which to evaluate the chunks. If `NULL`,  a new environment is created.

@@ -1,0 +1,89 @@
+---
+title: "Assignment 05 - Checkfile"
+subtitle: "Statistical Computing and Empirical Methods"
+author: "Dr. Felipe Campelo"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r ID, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: MY_STUDENT_ID (numeric)
+#' Required plots: 
+```
+
+```{r Setup, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r checkID, echo=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r Q1a}
+#' Required variables: df (data.frame)
+#' Required plots: 
+```
+
+```{r Q1b}
+#' Required variables: 
+#' Required plots: histogram
+```
+
+```{r Q1c}
+#' Required variables: df2 (data.frame)
+#' Required plots: 
+```
+
+```{r Q3a}
+#' Required variables: df.comp (data.frame)
+#' Required plots: 
+```
+
+```{r Q3c}
+#' Required variables: mytest.ppv (htest)
+#' Required plots: 
+```
+
+```{r Q3d}
+#' Required variables: mytest.npv (htest)
+#' Required plots: 
+```
+
+```{r Q4a}
+#' Required variables: myN (numeric)
+#' Required plots: 
+```
+
+```{r Q4b}
+#' Required variables: power.df (data.frame)
+#' Required plots: power curve
+```
+
+```{r Q5a}
+#' Required variables: q5.df.summ (data.frame)
+#' Required plots: 
+```
+
+```{r Q5c}
+#' Required variables: q5.t.power (numeric)
+#' Required plots: 
+```
+
+```{r Q5d}
+#' Required variables: 
+#' Required plots: QQ-plot
+```
+
+```{r Q5e}
+#' Required variables: q5.parametric.p (numeric)
+#' Required plots: 
+```
+
+```{r Q5f}
+#' Required variables: q5.boot.p (numeric)
+#' Required plots: 
+```

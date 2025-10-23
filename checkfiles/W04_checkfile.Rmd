@@ -1,0 +1,99 @@
+---
+title: "Assignment 04 - Checkfile"
+subtitle: "Statistical Computing and Empirical Methods"
+author: "Dr. Felipe Campelo"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r ID, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: MY_STUDENT_ID (numeric)
+#' Required plots: 
+```
+
+```{r Setup, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r checkID, echo=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r Q1a}
+#' Required variables: impute_by_median (function)
+#' Required plots: 
+```
+
+```{r Q1b}
+#' Required variables: df_xy (data.frame)
+#' Required plots: 
+```
+
+```{r Q1c}
+#' Required variables: sometimes_missing (function); df_xy_missing (data.frame)
+#' Required plots: 
+```
+
+```{r Q1d}
+#' Required variables: df_xy_imputed (data.frame)
+#' Required plots: 
+```
+
+```{r Q2a}
+#' Required variables: wins_tidy (data.frame)
+#' Required plots:
+```
+
+```{r Q2b}
+#' Required variables: losses_tidy (data.frame)
+#' Required plots: 
+```
+
+```{r Q2c}
+#' Required variables: hockey_df (data.frame)
+#' Required plots: 
+```
+
+```{r Q2d}
+#' Required variables: summary_teams (data.frame)
+#' Required plots: 
+```
+
+```{r Q3a}
+#' Required variables: ci_mean_known_var (function)
+#' Required plots: 
+```
+
+```{r Q3b}
+#' Required variables: ci_variance (function)
+#' Required plots: 
+```
+
+```{r Q3c}
+#' Required variables: ci_mean_t (function)
+#' Required plots: 
+```
+
+```{r Q3d}
+#' Required variables: 
+#' Required plots: CI half widths
+```
+
+```{r Q4a}
+#' Required variables: median_boot_ci (function)
+#' Required plots: 
+```
+
+```{r Q4b}
+#' Required variables: med_usd_cap_ci (numeric)
+#' Required plots: 
+```
+
+```{r Q4c}
+#' Required variables: 
+#' Required plots: CIs on median values
+```

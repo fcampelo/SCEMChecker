@@ -1,0 +1,86 @@
+---
+title: "Assignment 03 - Checkfile"
+subtitle: "Statistical Computing and Empirical Methods"
+author: "Dr. Felipe Campelo"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: MY_STUDENT_ID (numeric)
+#' Required plots: 
+```
+
+```{r Q1a}
+#' Required variables: xunif, x.mean, x.var
+#' Required plots:
+```
+
+```{r Q1b}
+#' Required variables: xbern.p
+#' Required plots:
+```
+
+```{r Q2a}
+#' Required variables: 
+#' Required plots: histogram
+```
+
+```{r Q2b}
+#' Required variables: xbar.mean, xbar.sd
+#' Required plots:
+```
+
+```{r Q3}
+#' Required variables: xvar.vector, xvar.bias
+#' Required plots: histogram
+```
+
+```{r Q4a}
+#' Required variables: 
+#' Required plots:
+```
+
+```{r Q4b}
+#' Required variables: 
+#' Required plots: density
+```
+
+
+```{r Q5a}
+#' Required variables: delayed_flights_2h
+#' Required plots: histogram
+```
+
+```{r Q5b}
+#' Required variables: 
+#' Required plots: density
+```
+
+```{r Q5c}
+#' Required variables: 
+#' Required plots: violin
+```
+
+
+```{r Q5d}
+#' Required variables: 
+#' Required plots: scatterplot
+```
+
+```{r Q6a}
+#' Required variables: 
+#' Required plots: faceted scatterplot
+```
+
+```{r Q6b}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r Q6c}
+#' Required variables: 
+#' Required plots: faceted scatterplot
+```

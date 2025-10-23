@@ -7,6 +7,8 @@
 run_rmd_chunks(parsed, remove_illegal_installs = TRUE, env = NULL)
 }
 \arguments{
+\item{parsed}{a parsed Rmd file}
+
 \item{remove_illegal_installs}{logical, should calls to install.packages() be
 removed outside the "Setup" chunk?}
 
@@ -21,8 +23,6 @@ illegal_install (logical)
 }
 
 @export}
-
-\item{path}{path to Rmd file}
 }
 \description{
 Run an Rmd and capture outputs
