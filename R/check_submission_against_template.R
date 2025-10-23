@@ -40,7 +40,7 @@ check_submission_against_template <- function(template_path,
   # ---------- Step 3: Check for illegal install.packages ----------
   illegal_installs <- character(0)
   for (chunk_name in names(submission_chunks)) {
-    if (chunk_name != "Setup") {
+    if (tolower(chunk_name) != "setup") {
       code <- submission_chunks[[chunk_name]]
       if (any(grepl("install\\.packages\\s*\\(", code))) {
         illegal_installs <- c(illegal_installs, chunk_name)

@@ -4,13 +4,13 @@
 \alias{run_rmd_chunks}
 \title{Run an Rmd and capture outputs}
 \usage{
-run_rmd_chunks(path, remove_illegal_installs = TRUE)
+run_rmd_chunks(parsed, remove_illegal_installs = TRUE, env = NULL)
 }
 \arguments{
-\item{path}{path to Rmd file}
-
 \item{remove_illegal_installs}{logical, should calls to install.packages() be
-removed outside the "Setup" chunk?
+removed outside the "Setup" chunk?}
+
+\item{env}{environment in which to evaluate the chunks. If \code{NULL},  a new environment is created.
 
 @returns a list object with:
 \itemize{
@@ -21,6 +21,8 @@ illegal_install (logical)
 }
 
 @export}
+
+\item{path}{path to Rmd file}
 }
 \description{
 Run an Rmd and capture outputs

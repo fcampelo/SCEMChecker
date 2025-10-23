@@ -2,7 +2,7 @@
 % Please edit documentation in R/compare_values.R
 \name{compare_values}
 \alias{compare_values}
-\title{compare_values:}
+\title{Compare values}
 \usage{
 compare_values(sub_val, ref_val, tol = 1e-06)
 }

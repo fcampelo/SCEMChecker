@@ -8,11 +8,11 @@ check_submission_against_template(
   template_path,
   submission_path,
   reqvars_str = "Required variables",
-  reqplot_str = "Required plot"
+  reqplot_str = "Required plots"
 )
 }
 \arguments{
-\item{template_path}{path to the template solution .Rmd file}
+\item{template_path}{path to the template .Rmd file}
 
 \item{submission_path}{path to the submission .Rmd file}
 
