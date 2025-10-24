@@ -5,16 +5,20 @@
 \title{Check the consistency of an Rmd submission file against a reference template}
 \usage{
 check_submission_against_template(
-  template_path,
+  template_path = NULL,
   submission_path,
+  template_number = NULL,
   reqvars_str = "Required variables",
   reqplot_str = "Required plots"
 )
 }
 \arguments{
-\item{template_path}{path to the template .Rmd file}
+\item{template_path}{path to the template .Rmd file. Ignored if \code{template_number} is not NULL}
 
 \item{submission_path}{path to the submission .Rmd file}
+
+\item{template_number}{integer, indicating the number of the template you want to compare against.
+If not \code{NULL}, the routine will ignore anything passed to \code{template_path} and retrieve the checkfile online.}
 
 \item{reqvars_str}{Indicator string for definition of required variables}
 

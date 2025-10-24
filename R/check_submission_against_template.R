@@ -34,37 +34,27 @@ check_submission_against_template <- function(template_path = NULL,
 
   if(!is.null(template_number)){
     template_number <- as.integer(template_number)
+
     if(is.na(template_number)) stop("Template number must be an integer > 0")
 
-    template_path <- sprintf("https://raw.githubusercontent.com/fcampelo/SCEMChecker/refs/heads/main/checkfiles/W%02d_checkfile.Rmd",
-                             template_number)
-    template_name <- sprintf("W%02d_checkfile.Rmd", template_number)
+    template_name <- sprintf("extdata/W%02d_checkfile.Rmd", template_number)
 
-    template_chunks <- try({
-      suppressMessages(
-        suppressWarnings(
-          parse_rmd_chunks(template_path)
-        )
-      )
-    }, silent = TRUE)
+    template_path <- system.file(template_name, package = "SCEMChecker")
 
-    if (inherits(template_chunks, "try-error")) {
-      stop("\ntemplate_number: ", template_number,
-           "\nTemplate filename: ", template_name,
-           "\nTemplate URL: ", template_path,
-           "\nFile not retrievable (does not exists or connection error)"
-      )
-    }
-
-  } else {
-    if(is.null(template_path)){
-      stop("Either template_path or template_number must be defined.")
-    }
     if(!file.exists(template_path)){
-      stop("Template file does not exists at path: ", template_path)
+      stop("\ntemplate_number: ", template_number,
+           "\nCorresponding template filename: ", gsub("extdata/", "", template_name),
+           "\nTemplate not available")
     }
-    template_chunks <- parse_rmd_chunks(template_path)
   }
+
+  if(is.null(template_path)){
+    stop("Either template_path or template_number must be defined.")
+  }
+  if(!file.exists(template_path)){
+    stop("Template file does not exists at path: ", template_path)
+  }
+  template_chunks <- parse_rmd_chunks(template_path)
 
 
   # ---------- Step 1: Parse template ----------
