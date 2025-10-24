@@ -35,11 +35,39 @@ check_submission_against_template <- function(template_path = NULL,
   if(!is.null(template_number)){
     template_number <- as.integer(template_number)
     if(is.na(template_number)) stop("Template number must be an integer > 0")
+
+    template_path <- sprintf("https://raw.githubusercontent.com/fcampelo/SCEMChecker/refs/heads/main/checkfiles/W%02d_checkfile.Rmd",
+                             template_number)
+    template_name <- sprintf("W%02d_checkfile.Rmd", template_number)
+
+    template_chunks <- try({
+      suppressMessages(
+        suppressWarnings(
+          parse_rmd_chunks(template_path)
+        )
+      )
+    }, silent = TRUE)
+
+    if (inherits(template_chunks, "try-error")) {
+      stop("\ntemplate_number: ", template_number,
+           "\nTemplate filename: ", template_name,
+           "\nTemplate URL: ", template_path,
+           "\nFile not retrievable (does not exists or connection error)"
+      )
+    }
+
+  } else {
+    if(is.null(template_path)){
+      stop("Either template_path or template_number must be defined.")
+    }
+    if(!file.exists(template_path)){
+      stop("Template file does not exists at path: ", template_path)
+    }
+    template_chunks <- parse_rmd_chunks(template_path)
   }
 
 
   # ---------- Step 1: Parse template ----------
-  template_chunks <- parse_rmd_chunks(template_path)
   template_info   <- lapply(template_chunks, parse_requirements,
                             reqvars_str = reqvars_str,
                             reqplot_str = reqplot_str)
@@ -68,6 +96,7 @@ check_submission_against_template <- function(template_path = NULL,
   results <- list()
 
   for (chunk_name in names(template_chunks)) {
+    message("Checking code chunk ", chunk_name)
     res <- list(
       chunk           = chunk_name,
       present         = chunk_name %in% names(submission_chunks),
