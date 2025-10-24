@@ -24,12 +24,14 @@
 #' @importFrom utils capture.output
 #'
 #' @export
+#'
+#' @aliases check_submission_against_template
 
-check_submission_against_template <- function(template_path = NULL,
-                                              submission_path,
-                                              template_number = NULL,
-                                              reqvars_str = "Required variables",
-                                              reqplot_str = "Required plots") {
+consistency_checker <- function(template_path = NULL,
+                                submission_path,
+                                template_number = NULL,
+                                reqvars_str = "Required variables",
+                                reqplot_str = "Required plots") {
 
 
   if(!is.null(template_number)){
@@ -179,4 +181,14 @@ check_submission_against_template <- function(template_path = NULL,
 
   class(summary_df) <- c("SCEMChecker", class(summary_df))
   return(summary_df)
+}
+
+check_submission_against_template <- function(template_path = NULL,
+                                              submission_path,
+                                              template_number = NULL,
+                                              reqvars_str = "Required variables",
+                                              reqplot_str = "Required plots") {
+
+  consistency_checker(template_path, submission_path, template_number,
+                      reqvars_str, reqplot_str)
 }
