@@ -9,9 +9,7 @@
 #'    \item no rogue calls to `install.packages` are done.
 #' }
 #'
-#' @param template_path path to the template .Rmd file. Ignored if `template_number` is not NULL
-#' @param template_number integer, indicating the number of the template you want to compare against.
-#' If not `NULL`, the routine will ignore anything passed to `template_path` and retrieve the checkfile online.
+#' @param template_path path to the template .Rmd file
 #' @param submission_path path to the submission .Rmd file
 #' @param reqvars_str Indicator string for definition of required variables
 #' @param reqplot_str Indicator string for definition of required variables
@@ -25,18 +23,10 @@
 #'
 #' @export
 
-check_submission_against_template <- function(template_path = NULL,
+check_submission_against_template <- function(template_path,
                                               submission_path,
-                                              template_number = NULL,
                                               reqvars_str = "Required variables",
                                               reqplot_str = "Required plots") {
-
-
-  if(!is.null(template_number)){
-    template_number <- as.integer(template_number)
-    if(is.na(template_number)) stop("Template number must be an integer > 0")
-  }
-
 
   # ---------- Step 1: Parse template ----------
   template_chunks <- parse_rmd_chunks(template_path)
