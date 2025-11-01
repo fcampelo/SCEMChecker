@@ -1,0 +1,129 @@
+---
+title: "Assignment 06 - Checkfile"
+subtitle: "Statistical Computing and Empirical Methods"
+author: "Dr. Felipe Campelo"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r ID, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: MY_STUDENT_ID (numeric)
+#' Required plots: 
+```
+
+```{r Setup, echo=FALSE, message=FALSE, warning=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r checkID, echo=FALSE}
+#' Required variables: 
+#' Required plots: 
+```
+
+```{r Q1a}
+#' Required variables: bp.df (data.frame)
+#' Required plots: NA
+```
+
+```{r Q1b}
+#' Required variables: NA
+#' Required plots: violin+jittered plot
+```
+
+```{r Q1c}
+#' Required variables: bp.marital (data.frame); pval (numeric); ci95 (numeric)
+#' Required plots: NA
+```
+
+```{r Q2a}
+#' Required variables: df.ab1 (data.frame)
+#' Required plots: boxplots
+```
+
+```{r Q2b}
+#' Required variables: df.ab1.log (data.frame)
+#' Required plots: boxplots or violin plots
+```
+
+```{r Q2c}
+#' Required variables: required_n_per_group (numeric)
+#' Required plots: NA
+```
+
+```{r Q2d}
+#' Required variables: NA
+#' Required plots: NA
+```
+
+```{r Q2e}
+#' Required variables: df.ab1.log2 (data.frame)
+#' Required plots: NA
+```
+
+```{r Q2f}
+#' Required variables: pvals.raw (numeric); pvals.holm (numeric)
+#' Required plots: NA
+```
+
+```{r Q3a}
+#' Required variables: df.paired.t (data.frame)
+#' Required plots: NA
+```
+
+```{r Q3c}
+#' Required variables: pval.paired (numeric); diff.paired (numeric); ci.paired (numeric)
+#' Required plots: NA
+```
+
+```{r Q3d}
+#' Required variables: NA
+#' Required plots: NA
+```
+
+```{r Q4a}
+#' Required variables: df.strat (data.frame); df.strat.stats (data.frame)
+#' Required plots: NA
+```
+
+```{r Q4b}
+#' Required variables: NA
+#' Required plots: faceted qqplots
+```
+
+```{r Q4c}
+#' Required variables: NA
+#' Required plots: NA
+```
+
+```{r Q4d}
+#' Required variables: aov.strat (aov)
+#' Required plots: NA
+```
+
+```{r Q4e}
+#' Required variables: df.strat (data.frame); aov.strat (aov); strat.tukey (glht)
+#' Required plots: NA
+```
+
+```{r Q5a}
+#' Required variables: df.cbd (data.frame)
+#' Required plots: NA
+```
+
+```{r Q5b}
+#' Required variables: NA
+#' Required plots: NA
+```
+
+```{r Q5c}
+#' Required variables: cbd.mht
+#' Required plots: NA
+```
+
+```{r Q5d}
+#' Required variables: NA
+#' Required plots: confidence intervals
+```
