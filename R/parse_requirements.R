@@ -1,7 +1,7 @@
 # ========== Helper: Parse required variables/plots from code ==========
 parse_requirements <- function(code,
                                reqvars_str = "Required variables",
-                               reqplot_str = "Required plots") {
+                               reqplot_str = "Required plot") {
   req_vars <- list()
   req_plot <- NULL
 

@@ -176,7 +176,8 @@ consistency_checker <- function(template_path = NULL,
                                             r$type_mismatch[, 2], "-->",
                                             r$type_mismatch[, 3], ")",
                                             collapse = "; ")),
-               missing_plot  = r$plot_expected & !plot_called)}))
+               plot_expected  = r$plot_expected,
+               plot_called    = r$plot_called)}))
 
   class(summary_df) <- c("SCEMChecker", class(summary_df))
   return(summary_df)
