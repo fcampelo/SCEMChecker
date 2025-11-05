@@ -25,7 +25,7 @@ editor_options:
 
 ```{r Q1a}
 #' Required variables: bp.df (data.frame)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q1b}
@@ -35,7 +35,7 @@ editor_options:
 
 ```{r Q1c}
 #' Required variables: bp.marital (data.frame); pval (numeric); ci95 (numeric)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q2a}
@@ -50,42 +50,42 @@ editor_options:
 
 ```{r Q2c}
 #' Required variables: required_n_per_group (numeric)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q2d}
 #' Required variables: NA
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q2e}
 #' Required variables: df.ab1.log2 (data.frame)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q2f}
 #' Required variables: pvals.raw (numeric); pvals.holm (numeric)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q3a}
 #' Required variables: df.paired.t (data.frame)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q3c}
 #' Required variables: pval.paired (numeric); diff.paired (numeric); ci.paired (numeric)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q3d}
 #' Required variables: NA
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q4a}
 #' Required variables: df.strat (data.frame); df.strat.stats (data.frame)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q4b}
@@ -95,32 +95,32 @@ editor_options:
 
 ```{r Q4c}
 #' Required variables: NA
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q4d}
 #' Required variables: aov.strat (aov)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q4e}
 #' Required variables: df.strat (data.frame); aov.strat (aov); strat.tukey (glht)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q5a}
 #' Required variables: df.cbd (data.frame)
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q5b}
 #' Required variables: NA
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q5c}
 #' Required variables: cbd.mht
-#' Required plots: NA
+#' Required plots: 
 ```
 
 ```{r Q5d}
