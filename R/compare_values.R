@@ -7,7 +7,7 @@
 #' @param tol tolerance for numerical comparisons
 #'
 #'
-#' @returns a list objecti with fields match (logical), detail (string)
+#' @returns a list object with fields match (logical), detail (string)
 #'
 
 compare_values <- function(sub_val, ref_val, tol = 1e-6) {

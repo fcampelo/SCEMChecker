@@ -14,7 +14,7 @@ compare_values(sub_val, ref_val, tol = 1e-06)
 \item{tol}{tolerance for numerical comparisons}
 }
 \value{
-a list objecti with fields match (logical), detail (string)
+a list object with fields match (logical), detail (string)
 }
 \description{
 Compares values and returns informative messages if there are differences

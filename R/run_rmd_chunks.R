@@ -39,6 +39,7 @@ run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
   chunk_results <- list()
 
   for (chunk_name in names(parsed)) {
+    #cat("\nRunning chunk", chunk_name)
     res <- list(
       chunk           = chunk_name,
       present         = TRUE,

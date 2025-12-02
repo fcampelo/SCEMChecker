@@ -14,7 +14,7 @@ parse_rmd_chunks <- function(path) {
     header <- lines[start]
     name   <- stringr::str_match(header, "\\{r\\s+([^,\\s\\}]*)")[, 2]
 
-    if (is.na(name)) next
+    if (is.na(name)) name <- sprintf("Unnamed_chunk_%02d", i)
 
     code   <- lines[(start + 1):(end - 1)]
     chunks[[name]] <- code

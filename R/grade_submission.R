@@ -6,14 +6,16 @@
 # - out_dir: directory where intermediate results, RDS, Rmd and html will be written
 # - render_report: whether to call rmarkdown::render() on feedback Rmd
 grade_submission <- function(template_path,
-                                  submission_path,
-                                  reference_path,
-                                  out_dir = tempdir(),
-                                  reqvars_str = "Required variables",
-                                  reqplot_str = "Required plots",
-                                  render_report = TRUE) {
+                             submission_path,
+                             reference_path,
+                             out_dir = tempdir(),
+                             reqvars_str = "Required variables",
+                             reqplot_str = "Required plots",
+                             render_report = TRUE) {
 
-  dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+  if(!dir.exists(out_dir)){
+    dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
+  }
 
   # parse template info
   template_chunks <- parse_rmd_chunks(template_path)
