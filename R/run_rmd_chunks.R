@@ -45,8 +45,7 @@ run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
       present         = TRUE,
       illegal_install = chunk_name %in% illegal_installs,
       error           = NULL,
-      plot            = NULL,
-      plot_generated  = FALSE)
+      plot            = NULL)
 
     code <- parsed[[chunk_name]]
     expr <- try(parse(text = code), silent = TRUE)
@@ -88,7 +87,6 @@ run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
 
               if (has_content) {
                 res$plot <- rp
-                res$plot_generated <- TRUE
               }
             }
           }, file = NULL)

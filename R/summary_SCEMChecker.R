@@ -75,15 +75,15 @@ summary.SCEMChecker <- function(object, ...)
     message("------")
   }
 
-  if(any(object$plot_expected & !object$plot_called)){
-    idx <- which(object$plot_expected & !object$plot_called)
-    tmp <- object[idx, ]
-    message("\nChunks with missing plot calls")
-    for (i in seq_along(idx)){
-      message(tmp$chunk[i])
-    }
-    message("------")
-  }
+  # if(any(object$plot_expected & !object$plot_called)){
+  #   idx <- which(object$plot_expected & !object$plot_called)
+  #   tmp <- object[idx, ]
+  #   message("\nChunks with missing plot calls")
+  #   for (i in seq_along(idx)){
+  #     message(tmp$chunk[i])
+  #   }
+  #   message("------")
+  # }
 
   invisible(NULL)
 }

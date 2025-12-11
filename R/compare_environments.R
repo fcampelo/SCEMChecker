@@ -20,12 +20,12 @@ compare_environments <- function(sub_run, ref_run, template_info) {
   results <- list()
 
   # iterate template chunks
-  for (chunk_name in names(template_info)) {
+  for (i in seq_along(template_info)) {
+    chunk_name <- names(template_info)[i]
     tpl <- template_info[[chunk_name]]
     res <- list(chunk = chunk_name, present = FALSE,
                 missing_vars = NULL, type_mismatch = NULL,
-                value_mismatch = NULL, missing_plot = FALSE,
-                plot_present_submission = FALSE, plot_present_reference = FALSE)
+                value_mismatch = NULL)
 
     # determine presence
     res$present <- chunk_name %in% names(sub_run$chunks)
@@ -40,14 +40,15 @@ compare_environments <- function(sub_run, ref_run, template_info) {
     ref_chunk <- if (chunk_name %in% names(ref_run$chunks)) ref_run$chunks[[chunk_name]] else NULL
 
     # plot checks
-    res$plot_present_submission <- isTRUE(sub_chunk$plot_generated)
-    res$plot_present_reference  <- !is.null(ref_chunk) && isTRUE(ref_chunk$plot_generated)
-    if (!is.null(tpl$plot) && !res$plot_present_submission) {
-      res$missing_plot <- TRUE
-    }
+    # res$plot_present_submission <- isTRUE(sub_chunk$plot_generated)
+    # res$plot_present_reference  <- !is.null(ref_chunk) && isTRUE(ref_chunk$plot_generated)
+    # if (!is.null(tpl$plot) && !res$plot_present_submission) {
+    #   res$missing_plot <- TRUE
+    # }
 
     # variable checks: for each required variable
-    for (v in names(tpl$vars)) {
+    for (j in seq_along(tpl$vars)) {
+      v <- names(tpl$vars[j])
       # existence in submission env?
       if (!exists(v, envir = sub_run$env, inherits = FALSE)) {
         res$missing_vars <- c(res$missing_vars, v)

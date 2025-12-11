@@ -7,6 +7,7 @@ parse_requirements <- function(code,
 
   req_line  <- grep(paste0("^#'\\s*", reqvars_str, ":"), code, value = TRUE)
   plot_line <- grep(paste0("^#'\\s*", reqplot_str, ":"), code, value = TRUE)
+  mark_line <- grep(paste0("^#'\\s*Marks:"), code, value = TRUE)
 
   if (length(req_line) > 0) {
     var_part <- sub(paste0("^#'\\s*", reqvars_str, ":\\s*"), "", req_line)
@@ -27,11 +28,18 @@ parse_requirements <- function(code,
       }
     }
   }
+
   if (length(plot_line) > 0) {
     req_plot <- sub(paste0("^#'\\s*", reqplot_str, ":\\s*"), "", plot_line)
 
     if (req_plot == "") req_plot <- NULL
   }
 
-  list(vars = req_vars, plot = req_plot)
+  if (length(mark_line) > 0) {
+    marks <- as.numeric(sub(paste0("^#'\\s*Marks:\\s*"), "", mark_line))
+
+    if (marks == "") marks <- 0
+  }
+
+  list(vars = req_vars, plot = req_plot, marks = marks)
 }
