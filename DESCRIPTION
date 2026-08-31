@@ -1,6 +1,6 @@
 Package: SCEMChecker
 Title: Assignment checking routines for SCEM (Statistical Computing and Empirical Methods) 
-Version: 0.0.0.9017
+Version: 0.0.0.9018
 Date: 2026-08-31
 Authors@R: 
     person("Felipe", "Campelo", , "fcampelo@tuta.com", role = c("aut", "cre"))
