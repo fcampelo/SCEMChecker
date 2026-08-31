@@ -153,7 +153,7 @@ consistency_checker <- function(template_path = NULL,
 
     # Detect if code calls a plotting function
     res$plot_expected <- !is.null(template_info[[chunk_name]]$plot)
-    res$plot_called <- detect_plot_calls(code)
+    #res$plot_called <- detect_plot_calls(code)
 
     results[[chunk_name]] <- res
   }

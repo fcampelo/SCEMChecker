@@ -20,7 +20,7 @@ summary.SCEMChecker <- function(object, ...)
   }
 
   message("\n===== SCEMChecker summary =====")
-  message("List of detected problems:")
+  message("***** List of problems detected *****\n(if empty, no problems were detected)\n--------------------------------------")
 
   if(any(!object$present)){
     idx <- which(!object$present)
