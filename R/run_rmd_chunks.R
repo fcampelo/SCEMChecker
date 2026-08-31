@@ -15,11 +15,11 @@
 #'
 #'  @export
 
-run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
+run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, remove_all_installs = FALSE, env = NULL) {
 
   # detect and remove illegal installs (if needed)
   illegal_installs <- character(0)
-  if (remove_illegal_installs) {
+  if (remove_illegal_installs|remove_all_installs) {
     for (chunk_name in names(parsed)) {
       if (chunk_name != "Setup") {
         code <- parsed[[chunk_name]]
@@ -34,11 +34,17 @@ run_rmd_chunks <- function(parsed, remove_illegal_installs = TRUE, env = NULL) {
     }
   }
 
+  if(remove_all_installs){
+    parsed[["Setup"]] <- gsub("force_reinstall_everything <- TRUE", "force_reinstall_everything <- FALSE", parsed[["Setup"]])
+    parsed[["Setup"]] <- gsub("force_install_ExpDE <- TRUE", "force_install_ExpDE <- FALSE", parsed[["Setup"]])
+  }
+
   # Generate new environment for running the chunks
   if(is.null(env)) env <- new.env(parent = globalenv())
   chunk_results <- list()
 
-  for (chunk_name in names(parsed)) {
+  for (j in seq_along(parsed)) {
+    chunk_name <- names(parsed)[j]
     #cat("\nRunning chunk", chunk_name)
     res <- list(
       chunk           = chunk_name,

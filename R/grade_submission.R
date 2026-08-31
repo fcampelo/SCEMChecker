@@ -6,11 +6,13 @@
 # - marks_file: csv with marks for each correct code block
 # - out_dir: directory where intermediate results, RDS, Rmd and html will be written
 # - render_report: whether to call rmarkdown::render() on feedback Rmd
+
+#' @export
 grade_submission <- function(template_path,
                              submission_path,
                              reference_path,
-                             marks_file,
                              out_dir = tempdir(),
+                             remove_all_installs = FALSE,
                              reqvars_str = "Required variables",
                              reqplot_str = "Required plots",
                              render_report = TRUE) {
@@ -26,7 +28,15 @@ grade_submission <- function(template_path,
 
   # run submission
   submission_chunks <- parse_rmd_chunks(submission_path)
-  sub_run <- run_rmd_chunks(submission_chunks, remove_illegal_installs = TRUE)
+
+  if(is.character(submission_chunks)){
+    return(list(summary_df = NA,
+                sub_run = NA,
+                ref_run = NA,
+                compare_res = NA))
+  }
+
+  sub_run <- run_rmd_chunks(submission_chunks, remove_all_installs = remove_all_installs)
 
   # attempt to get MY_STUDENT_ID from submission env
   student_id <- if (exists("MY_STUDENT_ID", envir = sub_run$env, inherits = FALSE)) {
@@ -106,7 +116,10 @@ grade_submission <- function(template_path,
 
   summary_df <- dplyr::bind_rows(results_list)
 
-  return(summary_df)
+  return(list(summary_df = summary_df,
+              sub_run = sub_run,
+              ref_run = ref_run,
+              compare_res = compare_res))
 }
 
 

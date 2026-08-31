@@ -4,7 +4,12 @@
 \alias{run_rmd_chunks}
 \title{Run an Rmd and capture outputs}
 \usage{
-run_rmd_chunks(parsed, remove_illegal_installs = TRUE, env = NULL)
+run_rmd_chunks(
+  parsed,
+  remove_illegal_installs = TRUE,
+  remove_all_installs = FALSE,
+  env = NULL
+)
 }
 \arguments{
 \item{parsed}{a parsed Rmd file}

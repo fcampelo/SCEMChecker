@@ -1,11 +1,13 @@
 # ========== Helper: Parse required variables/plots from code ==========
-parse_requirements <- function(code,
-                               reqvars_str = "Required variables",
-                               reqplot_str = "Required plots") {
+parse_requirements <- function(
+  code,
+  reqvars_str = "Required variables",
+  reqplot_str = "Required plots"
+) {
   req_vars <- list()
   req_plot <- NULL
 
-  req_line  <- grep(paste0("^#'\\s*", reqvars_str, ":"), code, value = TRUE)
+  req_line <- grep(paste0("^#'\\s*", reqvars_str, ":"), code, value = TRUE)
   plot_line <- grep(paste0("^#'\\s*", reqplot_str, ":"), code, value = TRUE)
   mark_line <- grep(paste0("^#'\\s*Marks:"), code, value = TRUE)
 
@@ -16,12 +18,14 @@ parse_requirements <- function(code,
     for (def in var_defs) {
       def <- stringr::str_trim(def)
 
-      if (nchar(def) == 0) next
+      if (nchar(def) == 0) {
+        next
+      }
 
       m <- stringr::str_match(def, "([^\\(]+)\\(([^\\)]+)\\)")
 
       if (!is.na(m[1, 1])) {
-        vname  <- stringr::str_trim(m[1, 2])
+        vname <- stringr::str_trim(m[1, 2])
         vclass <- stringr::str_trim(m[1, 3])
 
         req_vars[[vname]] <- vclass
@@ -39,6 +43,8 @@ parse_requirements <- function(code,
     marks <- as.numeric(sub(paste0("^#'\\s*Marks:\\s*"), "", mark_line))
 
     if (marks == "") marks <- 0
+  } else {
+    marks <- 0
   }
 
   list(vars = req_vars, plot = req_plot, marks = marks)

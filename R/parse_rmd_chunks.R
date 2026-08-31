@@ -5,7 +5,7 @@ parse_rmd_chunks <- function(path) {
   ends   <- grep("^```\\s*$", lines)
 
   if (length(starts) != length(ends))
-    stop("Unbalanced code chunks in ", path)
+    return(sprintf("Unbalanced code chunks in %s", path))
 
   chunks <- list()
   for (i in seq_along(starts)) {

@@ -2,8 +2,12 @@
 
 S3method(summary,SCEMChecker)
 export(consistency_checker)
+export(grade_submission)
 importFrom(dplyr,"%>%")
+importFrom(dplyr,across)
 importFrom(dplyr,bind_rows)
+importFrom(dplyr,mutate)
+importFrom(dplyr,select)
 importFrom(grDevices,dev.off)
 importFrom(grDevices,pdf)
 importFrom(grDevices,recordPlot)
