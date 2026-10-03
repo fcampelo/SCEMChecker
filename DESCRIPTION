@@ -1,7 +1,7 @@
 Package: SCEMChecker
 Title: Assignment checking routines for SCEM (Statistical Computing and Empirical Methods) 
-Version: 0.0.0.9020
-Date: 2026-08-31
+Version: 0.0.0.9022
+Date: 2026-10-03
 Authors@R: 
     person("Felipe", "Campelo", , "fcampelo@tuta.com", role = c("aut", "cre"))
 Description: Checking routines for Rmd student submissions in the context of the Statistical Computing and Empirical Methods unit, University of Bristol.
