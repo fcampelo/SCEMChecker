@@ -9,7 +9,7 @@ get_cw_datasets(
   N,
   maindata = NULL,
   save.folder = NULL,
-  options = list(lmin = 2000, lmax = 4000, class.column = "Class", class.neg = 0,
+  options = list(lmin = 3000, lmax = 4500, class.column = "Class", class.neg = 0,
     class.pos = 1)
 )
 }
